@@ -20,7 +20,6 @@ function stop(){
         clearInterval(timer);
         elapseTime = Date.now() - startTime;
         isRunning = false;
-        display.textContent = "00:00:00:00";
     }
 }
 
@@ -29,7 +28,7 @@ function reset(){
     startTime = 0;
     elapseTime = 0;
     isRunning = false;
-    display.textContent = 
+    display.textContent = "00:00:00:00";
 
 
 
@@ -49,5 +48,17 @@ function update(){
     minutes = String(minutes).padStart(2, "0");
     seconds = String(seconds).padStart(2, "0");
     milliseconds = String(milliseconds).padStart(2, "0");
-    display.textContent = `${hours}:${minutes}:${seconds}${milliseconds}`
+    display.textContent = `${hours}:${minutes}:${seconds}${milliseconds}`;
 }
+
+
+document.addEventListener('keydown', (e) => {
+    switch(e.key.toLowerCase()) {
+        case 's':
+            isRunning ? stop() : start();
+            break;
+        case 'r':
+            reset();
+            break;
+    }
+})
